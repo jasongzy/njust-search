@@ -2,6 +2,8 @@
 
 利用 NJUST 的「[图书馆研修小间管理系统](http://202.119.83.29/xabseat/Login.aspx)」中的一个接口，对全校历史上所有录入过系统的师生、校友进行姓名、学号（工号）的搜索查询。支持 shell 下直接输出格式化的搜索结果，也提供了基于 PHP 的 Web 查询界面。
 
+[Demo](https://rpi.jasongzy.com/njust-search.php)
+
 ## 依赖
 
 - Python 3
