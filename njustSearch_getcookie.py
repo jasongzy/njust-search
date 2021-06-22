@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from time import sleep
+# from time import sleep
 
 from selenium import webdriver
 
@@ -11,6 +11,7 @@ options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
 options.add_argument("--headless")
 options.add_argument("--disable-gpu")
+options.add_argument("--ignore-certificate-errors")
 driver = webdriver.Chrome(chrome_options=options)
 
 # 登录NJUST VPN

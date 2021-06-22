@@ -18,7 +18,9 @@ headers = {
 mySession = requests.session()
 
 # 登录检查
-responseLogin = mySession.get(urlMain, headers=headers).content.decode("UTF-8")
+responseLogin = mySession.get(urlMain, headers=headers, verify=False).content.decode(
+    "UTF-8"
+)
 if "注销" in responseLogin:
     print("登录成功！")
 else:
@@ -28,7 +30,9 @@ else:
     with open("njust_cookie.txt", "r") as file:
         cookie = file.read()
     headers["Cookie"] = cookie
-    responseLogin = mySession.get(urlMain, headers=headers).content.decode("UTF-8")
+    responseLogin = mySession.get(
+        urlMain, headers=headers, verify=False
+    ).content.decode("UTF-8")
     if "注销" in responseLogin:
         print("登录成功！")
     else:
