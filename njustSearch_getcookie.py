@@ -13,22 +13,30 @@ options.add_argument("--headless")
 options.add_argument("--disable-gpu")
 options.add_argument("--ignore-certificate-errors")
 driver = webdriver.Chrome(chrome_options=options)
+driver.set_page_load_timeout(20)
+driver.set_script_timeout(20)
 
 # 登录NJUST VPN
 driver.get("https://vpn.njust.edu.cn/")
 # sleep(2)
 driver.find_element_by_id("username").send_keys("9171040GXXXX")
 driver.find_element_by_id("password").send_keys("pw")
-driver.find_element_by_xpath('//*[@id="casLoginForm"]/p[5]/button').click()
+remember_me = driver.find_element_by_id("rememberMe")
+if not remember_me.is_selected():
+    remember_me.click()
+driver.find_element_by_id("login_submit").click()
 # sleep(5)
 
 # 登录研讨室预约系统
-driver.get("https://vpn.njust.edu.cn/web/1/http/0/202.119.83.29/xabseat/Login.aspx")
-driver.find_element_by_id("txtUserName").send_keys("9171040GXXXX")
-# driver.find_element_by_id("txtPassword").send_keys("")
-driver.find_element_by_id("BtnLogin").click()
-# sleep(5)
-# driver.save_screenshot("chromedriver.png")
+try:
+    driver.get("https://vpn.njust.edu.cn/web/1/http/0/202.119.83.29/xabseat/Login.aspx")
+    driver.find_element_by_id("txtUserName").send_keys("9171040G0814")
+    # driver.find_element_by_id("txtPassword").send_keys("")
+    driver.find_element_by_id("BtnLogin").click()
+    # sleep(5)
+    # driver.save_screenshot("chromedriver.png")
+except:
+    pass
 
 cookies = driver.get_cookies()
 # 保存为Headers里的格式
