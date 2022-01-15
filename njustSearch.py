@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python
 import json
 import sys
 
@@ -41,10 +41,7 @@ if len(sys.argv) >= 2:
     keyword = sys.argv[1]
 else:
     keyword = input("请输入关键词：")
-response = mySession.post(
-    urlSearch,
-    data={"key": "SGetMenber", "type": "1", "val": keyword},
-).content
+response = mySession.post(urlSearch, data={"key": "SGetMenber", "type": "1", "val": keyword}).content
 # response = response.decode("UTF-8")
 result_dic = json.loads(response)
 

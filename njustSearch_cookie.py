@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python
 import json
 import os
 import sys
@@ -18,9 +18,7 @@ headers = {
 mySession = requests.session()
 
 # 登录检查
-responseLogin = mySession.get(urlMain, headers=headers, verify=False).content.decode(
-    "UTF-8"
-)
+responseLogin = mySession.get(urlMain, headers=headers, verify=False).content.decode("UTF-8")
 if "注销" in responseLogin:
     print("登录成功！")
 else:
@@ -30,9 +28,7 @@ else:
     with open("njust_cookie.txt", "r") as file:
         cookie = file.read()
     headers["Cookie"] = cookie
-    responseLogin = mySession.get(
-        urlMain, headers=headers, verify=False
-    ).content.decode("UTF-8")
+    responseLogin = mySession.get(urlMain, headers=headers, verify=False).content.decode("UTF-8")
     if "注销" in responseLogin:
         print("登录成功！")
     else:
@@ -44,9 +40,7 @@ if len(sys.argv) >= 2:
     keyword = sys.argv[1]
 else:
     keyword = input("请输入关键词：")
-response = mySession.post(
-    urlSearch, data={"key": "SGetMenber", "type": "1", "val": keyword}, headers=headers
-).content
+response = mySession.post(urlSearch, data={"key": "SGetMenber", "type": "1", "val": keyword}, headers=headers).content
 # response = response.decode("UTF-8")
 result_dic = json.loads(response)
 
